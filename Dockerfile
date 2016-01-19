@@ -15,9 +15,11 @@ RUN apt-get update && \
 
 # Create virtual environment
 # Upgrade PIP in virtual environment to latest version
+# Install Ansible
 RUN virtualenv /appenv && \
     . /appenv/bin/activate && \
-    pip install pip --upgrade
+    pip install pip --upgrade && \
+    pip install ansible --upgrade
 
 # Add entrypoint script
 ADD scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
