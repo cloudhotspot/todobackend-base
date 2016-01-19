@@ -15,10 +15,12 @@ RUN apt-get update && \
 
 # Create virtual environment
 # Upgrade PIP in virtual environment to latest version
-# Install Ansible
+# Install Ansible and Boto
 RUN virtualenv /appenv && \
     . /appenv/bin/activate && \
     pip install pip --upgrade && \
+    pip install boto --upgrade && \
+    pip install boto3 --upgrade && \
     pip install ansible --upgrade
 
 # Add entrypoint script
