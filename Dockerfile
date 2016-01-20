@@ -1,5 +1,3 @@
-
-
 FROM ubuntu:trusty
 MAINTAINER Justin Menga <justin.menga@gmail.com>
 
@@ -13,21 +11,14 @@ ENV TERM=xterm-256color
 RUN apt-get update && \
     apt-get install -qyy \
       -o APT::Install-Recommends=false -o APT::Install-Suggests=false \
-      python python-virtualenv python-mysqldb libpython2.7 software-properties-common
-
-# Install Ansible
-RUN apt-add-repository ppa:ansible/ansible && \
-    apt-get update && \
-    apt-get install ansible -y
+      python python-virtualenv python-mysqldb libpython2.7
 
 # Create virtual environment
 # Upgrade PIP in virtual environment to latest version
 # Install Boto
 RUN virtualenv /appenv && \
     . /appenv/bin/activate && \
-    pip install pip --upgrade && \
-    pip install boto --upgrade && \
-    pip install boto3 --upgrade
+    pip install pip --upgrade
 
 # Add entrypoint script
 ADD scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
